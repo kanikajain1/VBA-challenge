@@ -1,0 +1,61 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Sub easy_solution()\
+\
+Dim x As Double\
+Dim Total As Double\
+Dim ws As Worksheet\
+Dim TotalV As Double\
+\
+For Each ws In Worksheets\
+\
+    Columns("I:Q").Select\
+    Selection.Clear\
+\
+    ThisWorkbook.Sheets("2014").Cells(1, 9).Value = ws.Cells(1, 1).Value\
+    ThisWorkbook.Sheets("2014").Cells(1, 10).Value = "Total Stock Value"\
+\
+x = 2\
+ThisWorkbook.Sheets("2014").Cells(x, 9).Value = ws.Cells(x, 1).Value\
+\
+LastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row\
+\
+    For i = 2 To LastRow\
+\
+If ws.Cells(i, 1).Value = ThisWorkbook.Sheets("2014").Cells(x, 9).Value Then\
+\
+TotalV = TotalV + ws.Cells(i, 7).Value\
+\
+     Else\
+     \
+ThisWorkbook.Sheets("2014").Cells(x, 10).Value = TotalV\
+\
+TotalV = ws.Cells(i, 7).Value\
+\
+x = x + 1\
+ThisWorkbook.Sheets("2014").Cells(x, 9).Value = ws.Cells(i, 1).Value\
+\
+\
+\
+\
+End If\
+    \
+    Next i\
+\
+ThisWorkbook.Sheets("2014").Cells(x, 10).Value = TotalV\
+    \
+    \
+\
+Columns("I:Q").EntireColumn.AutoFit\
+\
+Next ws\
+\
+Cells(1, 1).Select\
+\
+End Sub\
+}
